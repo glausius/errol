@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="faeterj">
+    <ion-title>{{infoAviso.message.title}}</ion-title>
+	 <ion-buttons end>
+    <button ion-button icon-start (click)="closePage()" large>
+	<ion-icon name="close-circle" ></ion-icon>Fechar
+	</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+ <h3 class="conteudoMsg"><p>{{infoAviso.message.content}}</p></h3>
+		<ion-footer>
+          <p class="emissor"><b>Por: {{ infoAviso.message.author }}</b></p>	
+		</ion-footer>
+</ion-content>
