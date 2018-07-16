@@ -7,7 +7,7 @@
 <ion-content no-padding>
 	<ion-list class="itensLista">
 		<ion-list-header class="headList">Importantes<ion-icon class="starIcon" name="ios-star"></ion-icon></ion-list-header>
-		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet()">
+		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item.message)">
 			<div>
 			<h2 class="titulo"><b>{{item.message.title}}</b><ion-icon class="starIcon" name="ios-star"></ion-icon></h2>
 			<p class="data">{{ item.message.created_at | datePipe}}</p><br>
@@ -16,7 +16,7 @@
 		</ion-item>
 	</ion-list>
 		<ion-list class="itensLista">
-		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item)">
+		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item.message)">
 			<h2 class="titulo"><b>{{item.message.title}}</b></h2>
 			<p class="data">{{ item.message.created_at | datePipe}}</p> 
 			<h3 class="conteudoMsg">{{item.message.content}}</h3>

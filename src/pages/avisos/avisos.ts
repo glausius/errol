@@ -30,7 +30,7 @@ export class AvisosPage {
 
   whatsappshare(whatsappmsg) {
    
-    this.sharing.share(whatsappmsg.content , null, null)
+    this.sharing.share(whatsappmsg.title+"\n" + whatsappmsg.content +"\n"+ "Por:"+whatsappmsg.author, null, null)
       .then(() => {
 		    console.log('compartilhando');
       }).catch((error) => {
@@ -101,10 +101,10 @@ export class AvisosPage {
      buttons: [
 		{
          text: 'Compartilhar',
-		     icon: "md-share",
+		 icon: "md-share",
          role: 'Compartilhar',
          handler: () => {
-           
+           console.log(item.title);
            this.whatsappshare(item);
          }
        },
