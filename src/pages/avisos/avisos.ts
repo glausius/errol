@@ -7,36 +7,36 @@ import { DatePipe } from '../../pipes/date/date';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
-  selector: 'page-avisos',
-  templateUrl: 'avisos.html'
+	selector: 'page-avisos',
+	templateUrl: 'avisos.html'
 })
 export class AvisosPage {
 	messages: MessageList[];
 	model: Message;
-	key: string;	
+	key: string;
 
-  constructor(public navParams: NavParams, public navCtrl: NavController, private avisosProvider: AvisosProvider, public actionSheetCtrl: ActionSheetController, private sharing: SocialSharing) {
-		
-		if(this.navParams.data.message && this.navParams.data.key) {
+	constructor(public navParams: NavParams, public navCtrl: NavController, private avisosProvider: AvisosProvider, public actionSheetCtrl: ActionSheetController, private sharing: SocialSharing) {
+
+		if (this.navParams.data.message && this.navParams.data.key) {
 			this.model = this.navParams.data.message;
 			this.key = this.navParams.data.key;
 		} else {
 			this.model = new Message();
 		}
 		this.getMenssagens();
-		
-		
-  }
 
-  whatsappshare(whatsappmsg) {
-   
-    this.sharing.share(whatsappmsg.content , null, null)
-      .then(() => {
-		    console.log('compartilhando');
-      }).catch((error) => {
-        console.log(error);
-      });
-  }
+
+	}
+
+	whatsappshare(item) {
+
+		this.sharing.share(item, null, null)
+			.then(() => {
+				console.log('compartilhando');
+			}).catch((error) => {
+				console.log(error);
+			});
+	}
 
 	ionViewDidEnter() {
 		this.avisosProvider.getAll()
@@ -50,7 +50,7 @@ export class AvisosPage {
 		return this.avisosProvider.insert(this.key, this.model)
 	}
 
-	
+
 	private _store = (message) => {
 		message.forEach(item => {
 			let msg = new Message();
@@ -69,71 +69,71 @@ export class AvisosPage {
 				})
 		});
 	}
-	
-	
 
- 	getMenssagens() {
+
+
+	getMenssagens() {
 		console.log('Pegando mensagens');
-    this.avisosProvider.getAvisos()
-    .then(data => {
-			console.info('Persistindo mensagens')
-			console.info(data)
-		  this._store(data);
-		})
-		.catch((err) => {
-			console.error('Erro ao recuperar mensagens: ' + err);
-		});
-  }
-  
-  
-  
-  public openDetalhes(item){
-
-		this.navCtrl.push('DetalhesViewPage', 
-		{
-			item: item
-		});  
+		this.avisosProvider.getAvisos()
+			.then(data => {
+				console.info('Persistindo mensagens')
+				console.info(data)
+				this._store(data);
+			})
+			.catch((err) => {
+				console.error('Erro ao recuperar mensagens: ' + err);
+			});
 	}
-	
-	 presentActionSheet(item) {
-   let actionSheet = this.actionSheetCtrl.create({
-   
-     buttons: [
-		{
-         text: 'Compartilhar',
-		     icon: "md-share",
-         role: 'Compartilhar',
-         handler: () => {
-           
-           this.whatsappshare(item);
-         }
-       },
-       {
-         text: 'Importante',
-		 icon: "ios-star-outline",
-         role: 'destructive',
-         handler: () => {
-           
-         }
-       },
-       {
-         text: 'Deletar',
-		 icon: 'ios-trash-outline',
-         handler: () => {
-           console.log('deletando');
-         }
-       },
-       {
-         text: 'Cancel',
-		 icon: 'ios-close-outline',
-         role: 'cancel',
-         handler: () => {
-           console.log('Cancel clicked');
-         }
-       }
-     ]
-   });
-	actionSheet.present();
 
-	 }
+
+
+	public openDetalhes(item) {
+
+		this.navCtrl.push('DetalhesViewPage',
+			{
+				item: item
+			});
+	}
+
+	presentActionSheet(item) {
+		let actionSheet = this.actionSheetCtrl.create({
+
+			buttons: [
+				{
+					text: 'Compartilhar',
+					icon: "md-share",
+					role: 'Compartilhar',
+					handler: () => {
+
+						this.whatsappshare(item);
+					}
+				},
+				{
+					text: 'Importante',
+					icon: "ios-star-outline",
+					role: 'destructive',
+					handler: () => {
+
+					}
+				},
+				{
+					text: 'Deletar',
+					icon: 'ios-trash-outline',
+					handler: () => {
+						console.log('deletando');
+					}
+				},
+				{
+					text: 'Cancel',
+					icon: 'ios-close-outline',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+		actionSheet.present();
+
+	}
 }

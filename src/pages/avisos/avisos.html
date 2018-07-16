@@ -5,22 +5,29 @@
 </ion-header>
 
 <ion-content no-padding>
-	<ion-list class="itensLista">
-		<ion-list-header class="headList">Importantes<ion-icon class="starIcon" name="ios-star"></ion-icon></ion-list-header>
-		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet()">
-			<div>
-			<h2 class="titulo"><b>{{item.message.title}}</b><ion-icon class="starIcon" name="ios-star"></ion-icon></h2>
-			<p class="data">{{ item.message.created_at | datePipe}}</p><br>
-			<h3 class="conteudoMsg">{{item.message.content}}</h3>
-			</div>
-		</ion-item>
-	</ion-list>
-		<ion-list class="itensLista">
-		<ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item)">
-			<h2 class="titulo"><b>{{item.message.title}}</b></h2>
-			<p class="data">{{ item.message.created_at | datePipe}}</p> 
-			<h3 class="conteudoMsg">{{item.message.content}}</h3>
-		</ion-item>
-	</ion-list>
+  <ion-list class="itensLista">
+    <ion-list-header class="headList">Importantes
+      <ion-icon class="starIcon" name="ios-star"></ion-icon>
+    </ion-list-header>
+    <ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item)">
+      <div>
+        <h2 class="titulo">
+          <b>{{item.message.title}}</b>
+          <ion-icon class="starIcon" name="ios-star"></ion-icon>
+        </h2>
+        <p class="data">{{ item.message.created_at | datePipe}}</p>
+        <br>
+        <h3 class="conteudoMsg">{{item.message.content}}</h3>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-list class="itensLista">
+    <ion-item class="itensLista" *ngFor="let item of messages" (click)="openDetalhes(item)" (press)="presentActionSheet(item)">
+      <h2 class="titulo">
+        <b>{{item.message.title}}</b>
+      </h2>
+      <p class="data">{{ item.message.created_at | datePipe}}</p>
+      <h3 class="conteudoMsg">{{item.message.content}}</h3>
+    </ion-item>
+  </ion-list>
 </ion-content>
-
